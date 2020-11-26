@@ -87,3 +87,26 @@ a.article-title:hover {
 .account-heading {
     font-size: 2.5rem;
 }
+
+
+/* highlight.js */
+/* pre, code {
+    white-space: pre;
+    overflow: auto;
+    margin: 0;
+    display: block;
+} */
+
+/* .hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    padding-right: 100%;
+    background: #002b36;
+    color: #839496;
+    -webkit-text-size-adjust: none;
+} */
+
+.hljs {
+    padding: 1rem;
+}

@@ -84,7 +84,7 @@ def algorithm_detail(request, pk):
 
 class AlgorithmCreateView(LoginRequiredMixin, CreateView):
     model = Algorithm
-    fields = ['title', 'content']
+    fields = ['title', 'description', 'code']
 
     def form_valid(self, form):
         # set the author of the algorithm to the current logged in user
@@ -94,7 +94,7 @@ class AlgorithmCreateView(LoginRequiredMixin, CreateView):
 
 class AlgorithmUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Algorithm
-    fields = ['title', 'content']
+    fields = ['title', 'description', 'code']
 
     def form_valid(self, form):
         # set the author of the algorithm to the current logged in user

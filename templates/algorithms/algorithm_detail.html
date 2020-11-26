@@ -4,23 +4,26 @@
 {% block content %}
 <!-- <h1>{{ object.title }}</h1> -->
 
-<article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}" />
-    <div class="media-body">
-        <div class="article-metadata">
-            <a class="mr-2" href="#">{{ object.author }}</a>
-            <!-- TODO: use the date filter -->
-            <small class="text-muted">{{ object.date_created }}</small>
-            {% if object.author == user %}
-            <div>
-                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'algorithm-update' object.id%}">Edit</a>
-                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'algorithm-delete' object.id%}">Delete</a>
+<article class="content-section">
+    <div class="media mb-2">
+        <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}" />
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{ object.author }}</a>
+                <!-- TODO: use the date filter -->
+                <small class="text-muted">{{ object.date_created }}</small>
+                {% if object.author == user %}
+                <div>
+                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'algorithm-update' object.id%}">Edit</a>
+                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'algorithm-delete' object.id%}">Delete</a>
+                </div>
+                {% endif %}
             </div>
-            {% endif %}
         </div>
-        <h2 class="article-title">{{ object.title }}</h2>
-        <p class="article-content">{{ object.content }}</p>
     </div>
+    <h2 class="article-title">{{ object.title }}</h2>
+    <p class="article-content">{{ object.description }}</p>
+    <pre><code>{{ object.code }}</code></pre>
 </article>
 
 <div class="content-section">
@@ -51,3 +54,6 @@
 {% endfor %}
 
 {% endblock content %}
+
+
+<h1>more stuff</h1>

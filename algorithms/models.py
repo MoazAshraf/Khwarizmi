@@ -6,7 +6,8 @@ from django.urls import reverse
 
 class Algorithm(models.Model):
     title = models.CharField(max_length=100)
-    content = models.TextField()
+    description = models.TextField(blank=True)
+    code = models.TextField(blank=True)
     date_created = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
