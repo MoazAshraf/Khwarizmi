@@ -1,0 +1,10 @@
+# working environment stuff
+*__pycache__/
+.vscode/
+devenv/
+Project.txt
+.prettierrc
+
+# data
+media/
+db.sqlite3
