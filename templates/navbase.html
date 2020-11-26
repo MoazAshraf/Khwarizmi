@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container">
+    <!-- As a link -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home' %}">Khwarizmi</a>
+    </nav>
+
+    <div class="jumbotron">
+        {% block content %}{% endblock content %}
+    </div>
+</div>
+{% endblock body %}

@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
+    'algorithms.apps.AlgorithmsConfig',
+    'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -118,4 +121,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = BASE_DIR / 'media' # directory where uploaded files will be saved
+MEDIA_URL = '/media/'  # public URL of the directory
+
+
+# crispy forms settings
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# redirects settings
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
