@@ -20,9 +20,11 @@ from . import views as site_views
 from users import views as user_views
 from django.conf import settings
 from django.conf.urls.static import static
+from algorithms import views as alg_views
 
 urlpatterns = [
-    path('', site_views.landing, name='home'),
+    # path('', site_views.landing, name='landing'),
+    path('', include('algorithms.urls')),
     path('admin/', admin.site.urls),
     path('signup/', user_views.signup, name='signup'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
