@@ -10,6 +10,9 @@
         <div class="media-body">
             <h2 class="account-heading">{{ profile.display_name }}</h2>
             <p class="text-secondary">{{ profile.user.username }}</p>
+            {% if user == profile.user %}
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'profile-settings' profile.slug %}">Edit</a>
+            {% endif %}
         </div>
     </div>
     <p class="article-content">{{ profile.bio }}</p>

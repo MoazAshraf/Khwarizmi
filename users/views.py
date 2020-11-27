@@ -38,13 +38,6 @@ class ProfileDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['algorithms'] = self.get_object().user.algorithm_set.order_by('-date_created')
         return context
-    
-    # def test_func(self):
-    #     # make sure only the user can edit their profile
-    #     profile = self.get_object()
-    #     if self.request.user == profile.user:
-    #         return True
-    #     return False
 
 
 class ProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
