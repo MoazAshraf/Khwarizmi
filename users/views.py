@@ -44,7 +44,7 @@ class ProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Profile
     template_name = "users/profile_settings.html"
     fields = ['display_name', 'bio', 'image']
-    
+
     def test_func(self):
         # make sure only the user can edit their profile
         profile = self.get_object()
