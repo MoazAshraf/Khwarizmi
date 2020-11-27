@@ -24,11 +24,17 @@ from algorithms import views as alg_views
 
 urlpatterns = [
     # path('', site_views.landing, name='landing'),
-    path('', include('algorithms.urls')),
     path('admin/', admin.site.urls),
     path('signup/', user_views.signup, name='signup'),
-    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
+    path('login/', user_views.login, name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    # path('password-reset/',
+    #     auth_views.PasswordResetView.as_view(template_name='users/password_reset.html'),
+    #     name='password_reset'),
+    # path('password-reset/done/',
+    #     auth_views.PasswordResetDoneView.as_view(template_name='users/password_reset_done.html'),
+    #     name='password_reset_done'),
+    # path('', include('algorithms.urls')),
     path('user/', include('users.urls')),
 ]
 

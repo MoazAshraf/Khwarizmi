@@ -11,8 +11,8 @@ from .views import (
 urlpatterns = [
     path('', AlgorithmListView.as_view(), name='home'),
     # path('algorithm/<int:pk>/', AlgorithmDetailView.as_view(), name='algorithm-detail'),
-    path('algorithm/<int:pk>/', views.algorithm_detail, name='algorithm-detail'),
-    path('algorithm/new/', AlgorithmCreateView.as_view(), name='algorithm-create'),
-    path('algorithm/<int:pk>/edit/', AlgorithmUpdateView.as_view(), name='algorithm-update'),
-    path('algorithm/<int:pk>/delete/', AlgorithmDeleteView.as_view(), name='algorithm-delete')
+    path('algorithm/<slug:slug>/', views.algorithm_detail, name='algorithm-detail'),
+    path('new-algorithm/', AlgorithmCreateView.as_view(), name='algorithm-create'),
+    path('algorithm/<slug:slug>/edit/', AlgorithmUpdateView.as_view(), name='algorithm-update'),
+    path('algorithm/<slug:slug>/delete/', AlgorithmDeleteView.as_view(), name='algorithm-delete')
 ]

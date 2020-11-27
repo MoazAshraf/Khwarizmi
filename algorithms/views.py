@@ -24,12 +24,13 @@ class AlgorithmListView(ListView):
         return context
 
 
-def algorithm_detail(request, pk):
+def algorithm_detail(request, slug):
     template_name = 'algorithms/algorithm_detail.html'
     # TODO: try get_object_or_404
-    algorithm = Algorithm.objects.get(pk=pk)
+    algorithm = Algorithm.objects.get(slug=slug)
     user = request.user
     comments = algorithm.comment_set.order_by("-date_created")      # list of algorithm comments
+
     if request.method == 'POST':
         comment_form = CommentCreateForm(request.POST)      # the comment creation form
         if comment_form.is_valid():
@@ -48,38 +49,6 @@ def algorithm_detail(request, pk):
     }
 
     return render(request, template_name, context)
-
-
-# class AlgorithmDetailView(FormView):
-#     template_name = 'algorithms/algorithm_detail.html'
-
-#     def get_context_data(self, *args, **kwargs):
-#         context = super().get_context_data(**kwargs)
-
-#         # the comment creation form
-#         comment_form = CommentCreateForm()
-#         context['comment_form'] = comment_form
-
-#         # list of algorithm comments
-#         algorithm = self.get_object()
-#         comments = algorithm.comment_set.order_by("-date_created")
-#         context['comments'] = comments
-
-#         return context
-
-    # def form_valid(self, form):
-    #     algorithm = self.get_object()
-    #     comment_content = form.cleaned_data.get("content")
-    #     comment_author = self.request.user
-    #     Comment.objects.create(author=comment_author, content=comment_content, algorithm=algorithm) # automatically saves it in the database
-    #     return super().form_valid(form)
-
-    # def test_func(self):
-    #     # make sure only the author can edit the algorithm
-    #     algorithm = self.get_object()
-    #     if self.request.user == algorithm.author:
-    #         return True
-    #     return False
 
 
 class AlgorithmCreateView(LoginRequiredMixin, CreateView):

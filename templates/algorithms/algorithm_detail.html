@@ -14,8 +14,8 @@
                 <small class="text-muted">{{ object.date_created }}</small>
                 {% if object.author == user %}
                 <div>
-                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'algorithm-update' object.id%}">Edit</a>
-                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'algorithm-delete' object.id%}">Delete</a>
+                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'algorithm-update' object.slug%}">Edit</a>
+                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'algorithm-delete' object.slug%}">Delete</a>
                 </div>
                 {% endif %}
             </div>
@@ -24,9 +24,9 @@
     <h2 class="article-title">{{ object.title }}</h2>
     <p class="article-content">{{ object.description }}</p>
     <pre><code>{{ object.code }}</code></pre>
-</article>
 
-<div class="content-section">
+    <!-- Comment form -->
+    {% if user.is_authenticated %}
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
@@ -37,7 +37,12 @@
             <button class="btn btn-outline-info" type="submit">Comment</button>
         </div>
     </form>
-</div>
+    {% else %}
+    <!-- If not logged in -->
+    <p><a href="{% url 'login' %}">Login</a> to write a comment.</p>
+    {% endif %}
+</article>
+
 
 {% for comment in comments %}
 <article class="media content-section">

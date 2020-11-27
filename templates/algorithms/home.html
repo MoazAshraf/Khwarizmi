@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-    <h2><a class="article-title" href="{% url 'algorithm-detail' algorithm.id %}">{{ algorithm.title }}</a></h2>
+    <h2><a class="article-title" href="{% url 'algorithm-detail' algorithm.slug %}">{{ algorithm.title }}</a></h2>
     <p class="article-content">{{ algorithm.description }}</p>
     <pre><code>{{ algorithm.code }}</code></pre>
 </article>
