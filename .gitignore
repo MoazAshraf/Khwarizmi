@@ -1,5 +1,5 @@
 # don't track changes to the static root directory, static files are collected in staticroot during deployment
-staticroot/
+staticfiles/
 
 # development environment stuff
 .vscode/
