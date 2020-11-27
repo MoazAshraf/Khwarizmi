@@ -1,4 +1,7 @@
-# working environment stuff
+# don't track changes to the static root directory, static files are collected in staticroot during deployment
+staticroot/
+
+# development environment stuff
 .vscode/
 devenv/
 Project.txt
@@ -10,6 +13,8 @@ snippets.txt
 media/
 db.sqlite3
 
+# Mac
+.DS_Store
 
 # Django stuff:
 *.log

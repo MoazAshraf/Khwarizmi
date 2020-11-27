@@ -126,6 +126,7 @@ USE_TZ = True
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+STATIC_ROOT = BASE_DIR / "staticroot"
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = BASE_DIR / 'media' # directory where uploaded files will be saved
