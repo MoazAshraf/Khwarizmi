@@ -26,16 +26,16 @@ class Profile(models.Model):
     
     # TODO: set this up to use the local filesystem in DEBUG? LOCAL? mode
     # TODO: See AWS Lambda
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)
 
-        # resize image (you can make this more efficient)
-        img = Image.open(self.image.path)
-        img = center_and_crop_image(img)
-        if img.height > 300 or img.width > 300:
-            output_size = (300, 300)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
+    #     # resize image (you can make this more efficient)
+    #     img = Image.open(self.image.path)
+    #     img = center_and_crop_image(img)
+    #     if img.height > 300 or img.width > 300:
+    #         output_size = (300, 300)
+    #         img.thumbnail(output_size)
+    #         img.save(self.image.path)
     
     def get_absolute_url(self):
         return reverse('profile-detail', kwargs={'slug': self.slug})
