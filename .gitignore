@@ -5,6 +5,7 @@ devenv/
 Project.txt
 snippets.txt
 .prettierrc
+.envrc
 
 # data
 media/
