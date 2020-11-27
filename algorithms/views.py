@@ -54,6 +54,7 @@ def algorithm_detail(request, slug):
 class AlgorithmCreateView(LoginRequiredMixin, CreateView):
     model = Algorithm
     fields = ['title', 'description', 'code']
+    template_name = 'algorithms/algorithm_create.html'
 
     def form_valid(self, form):
         # set the author of the algorithm to the current logged in user
@@ -64,6 +65,7 @@ class AlgorithmCreateView(LoginRequiredMixin, CreateView):
 class AlgorithmUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Algorithm
     fields = ['title', 'description', 'code']
+    template_name = 'algorithms/algorithm_update.html'
 
     def form_valid(self, form):
         # set the author of the algorithm to the current logged in user
