@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 from PIL import Image
 
 
@@ -15,10 +16,13 @@ def center_and_crop_image(img):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    slug = models.SlugField(null=False, unique=True)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    display_name = models.CharField(max_length=64)
+    bio = models.TextField(max_length=256, blank=True)
 
     def __str__(self):
-        return f"{self.user.username} Profile"
+        return f"{self.user.username}'s Profile"
     
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -30,3 +34,6 @@ class Profile(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+    
+    def get_absolute_url(self):
+        return reverse('profile-detail', kwargs={'slug': self.slug})

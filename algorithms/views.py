@@ -119,4 +119,3 @@ class AlgorithmDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == algorithm.author:
             return True
         return False
-    

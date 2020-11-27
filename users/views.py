@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserSignupForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserSignupForm, UserUpdateForm
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import UpdateView, DetailView
+from .models import Profile
 
 
 def signup(request):
@@ -15,26 +18,32 @@ def signup(request):
         form = UserSignupForm()
     return render(request, 'users/signup.html', {'form': form})
 
-@login_required
-def profile(request):
-    if request.method == 'POST':
-        u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(request.POST,
-                                request.FILES,
-                                instance=request.user.profile)
 
-        if u_form.is_valid() and p_form.is_valid():
-            u_form.save()
-            p_form.save()
-            messages.success(request, f"Your account has been updated!")
-            return redirect('profile')
-    else:
-        u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileUpdateForm(instance=request.user.profile)
+class ProfileDetailView(DetailView):
+    model = Profile
+    fields = ['display_name', 'bio', 'image']
 
-    context = {
-        'u_form': u_form,
-        'p_form': p_form
-    }
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['algorithms'] = self.get_object().user.algorithm_set.order_by('-date_created')
+        return context
+    
+    # def test_func(self):
+    #     # make sure only the user can edit their profile
+    #     profile = self.get_object()
+    #     if self.request.user == profile.user:
+    #         return True
+    #     return False
 
-    return render(request, 'users/profile.html', context)
+
+class ProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Profile
+    template_name = "users/profile_settings.html"
+    fields = ['display_name', 'bio', 'image']
+    
+    def test_func(self):
+        # make sure only the user can edit their profile
+        profile = self.get_object()
+        if self.request.user == profile.user:
+            return True
+        return False

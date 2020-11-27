@@ -3,6 +3,7 @@
 .vscode/
 devenv/
 Project.txt
+snippets.txt
 .prettierrc
 
 # data

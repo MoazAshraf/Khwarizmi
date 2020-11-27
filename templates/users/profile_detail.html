@@ -1,8 +1,22 @@
 {% extends "navbase.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-{% for algorithm in algorithms %}
+<div class="content-section">
+    <div class="media">
+        <img class="rounded-circle account-img" src="{{ profile.image.url }}" />
+        <div class="media-body">
+            <h2 class="account-heading">{{ profile.display_name }}</h2>
+            <p class="text-secondary">{{ profile.user.username }}</p>
+        </div>
+    </div>
+    <p class="article-content">{{ profile.bio }}</p>
+</div>
 
+
+{% if algorithms %}
+<h3>{{ profile.display_name }}'s Algorithms</h3>
+{% for algorithm in algorithms %}
 <article class="content-section">
     <div class="media mb-2">
         <img class="rounded-circle article-img" src="{{ algorithm.author.profile.image.url }}" />
@@ -18,6 +32,8 @@
     <p class="article-content">{{ algorithm.description }}</p>
     <pre><code>{{ algorithm.code }}</code></pre>
 </article>
-
 {% endfor %}
+{% endif %}
+
+
 {% endblock content %}
