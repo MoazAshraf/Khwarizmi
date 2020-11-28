@@ -3,23 +3,23 @@
 {% block title %}Khwarizmi, an algorithm sharing platform.{% endblock title%}
 
 {% block content %}
-{% for algorithm in algorithms %}
 
+{% for algorithm in algorithms %}
 <article class="content-section">
-    <div class="media mb-2">
-        <img class="rounded-circle article-img" src="{{ algorithm.author.profile.image.url }}" />
-        <div class="media-body">
-            <div class="article-metadata">
-                <a class="mr-2" href="{% url 'profile-detail' algorithm.author.profile.slug %}">{{ algorithm.author.profile.display_name }}</a>
-                <!-- TODO: use the date filter -->
-                <small class="text-muted">{{ algorithm.date_created }}</small>
-            </div>
+    <div class="media">
+        <a href="{% url 'profile-detail' algorithm.author.profile.slug %}"><img class="rounded-circle article-img"
+                src="{{ algorithm.author.profile.image.url }}" /></a>
+        <div class="media-body article-metadata">
+            <a class="mr-2 text-light"
+                href="{% url 'profile-detail' algorithm.author.profile.slug %}">{{ algorithm.author.profile.display_name }}</a>
+            <br>
+            <small class="text-white-50">{{ algorithm.date_created }}</small>
         </div>
     </div>
     <h2><a class="article-title" href="{% url 'algorithm-detail' algorithm.slug %}">{{ algorithm.title }}</a></h2>
     <p class="article-content">{{ algorithm.description }}</p>
     <pre><code>{{ algorithm.code }}</code></pre>
 </article>
-
 {% endfor %}
+
 {% endblock content %}

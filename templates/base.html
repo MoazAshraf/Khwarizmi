@@ -13,10 +13,12 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
 
     <!-- highlight.js CSS -->
-    <link rel="stylesheet"
-        href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.0/styles/default.min.css">
+    <!-- <link rel="stylesheet"
+    href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.0/styles/default.min.css"> -->
+    <link rel="stylesheet" href="{% static 'highlight/styles/tomorrow-night-eighties.css' %}">
 
     <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="{% static 'tomorrow-night-eighties.css' %}">
 
     <title>
         {% block title %}{% endblock title %}
@@ -43,7 +45,8 @@
     -->
 
     <!-- highlight.js JS -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.0/highlight.min.js"></script>
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.0/highlight.min.js"></script> -->
+    <script src="{% static 'highlight/highlight.pack.js' %}"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     
 </body>

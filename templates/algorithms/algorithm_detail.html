@@ -5,58 +5,53 @@
 
 {% block content %}
 <article class="content-section">
-    <div class="media mb-2">
-        <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}" />
-        <div class="media-body">
-            <div class="article-metadata">
-                <a class="mr-2" href="{% url 'profile-detail' object.author.profile.slug %}">{{ object.author.profile.display_name }}</a>
-                <!-- TODO: use the date filter -->
-                <small class="text-muted">{{ object.date_created }}</small>
-                {% if object.author == user %}
-                <div>
-                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'algorithm-update' object.slug%}">Edit</a>
-                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'algorithm-delete' object.slug%}">Delete</a>
-                </div>
-                {% endif %}
-            </div>
+    <div class="media">
+        <a href="{% url 'profile-detail' object.author.profile.slug %}"><img class="rounded-circle article-img"
+                src="{{ object.author.profile.image.url }}" /></a>
+        <div class="article-metadata">
+            <a class="mr-2 text-light"
+                href="{% url 'profile-detail' object.author.profile.slug %}">{{ object.author.profile.display_name }}</a>
+            <br>
+            <small class="text-white-50">{{ object.date_created }}</small>
         </div>
     </div>
-    <h2 class="article-title">{{ object.title }}</h2>
+    <h2><a class="article-title" href="{% url 'algorithm-detail' object.slug %}">{{ object.title }}</a></h2>
     <p class="article-content">{{ object.description }}</p>
     <pre><code>{{ object.code }}</code></pre>
 
     <!-- Comment form -->
     {% if user.is_authenticated %}
-    <form method="POST">
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Comment</legend>
-            {{ comment_form|crispy }}
-        </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Comment</button>
-        </div>
-    </form>
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Comment</legend>
+                {{ comment_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Comment</button>
+            </div>
+        </form>
     {% else %}
-    <!-- If not logged in -->
-    <p><a href="{% url 'login' %}">Login</a> to write a comment.</p>
+        <!-- If not logged in -->
+        <p><a href="{% url 'login' %}">Login</a> to write a comment.</p>
     {% endif %}
-</article>
 
+    <br>
 
-{% for comment in comments %}
-<article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ comment.author.profile.image.url }}" />
-    <div class="media-body">
-        <div class="article-metadata">
-            <a class="mr-2" href="{% url 'profile-detail' comment.author.profile.slug %}">{{ comment.author.profile.display_name }}</a>
-            <!-- TODO: use the date filter -->
-            <small class="text-muted">{{ comment.date_created }}</small>
+    {% for comment in comments %}
+    <div class="media comment">
+        <img class="rounded-circle article-img" src="{{ comment.author.profile.image.url }}" />
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2 text-light"
+                    href="{% url 'profile-detail' comment.author.profile.slug %}">{{ comment.author.profile.display_name }}</a>
+                <small class="text-white-50">{{ comment.date_created }}</small>
+            </div>
+            <p class="article-content">{{ comment.content }}</p>
         </div>
-        <p class="article-content">{{ comment.content }}</p>
     </div>
+    {% endfor %}
 </article>
-{% endfor %}
 
 {% endblock content %}
 
