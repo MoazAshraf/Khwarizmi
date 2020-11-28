@@ -1,0 +1,16 @@
+# General settings
+export SECRET_KEY="<Django secret key>"
+export DEBUG="<Debug mode?>"
+
+# Gmail settings for using SMTP (e.g. password resets)
+export EMAIL_USER="<Gmail email>"
+export EMAIL_PASS="<Gmail password>"
+
+# AWS S3 Settings
+export AWS_STORAGE_BUCKET_NAME="<AWS S3 bucket name>"
+export AWS_ACCESS_KEY_ID="<AWS IAM User Access Key ID>"
+export AWS_SECRET_ACCESS_KEY="AWS IAM User Secret Access Key"
+
+# Activate the python virtual environment
+. devenv/bin/activate
+echo "devenv ACTIVATED"
