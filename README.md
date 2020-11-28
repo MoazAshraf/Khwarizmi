@@ -1,5 +1,5 @@
 # Khwarizmi
-An algorithm sharing and discussion platform. The app is deployed using Heroku at [khwarizmiapp.herokuapp.com](khwarizmiapp.herokuapp.com).
+An algorithm sharing and discussion platform. The app is deployed using Heroku at [khwarizmiapp.herokuapp.com](https://khwarizmiapp.herokuapp.com).
 
 ![Screenshot of Khwarizmi](khwarizmi-screenshot.png)
 
