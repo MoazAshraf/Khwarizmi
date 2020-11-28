@@ -1,10 +1,10 @@
 # Khwarizmi
 Khwarizmi is an algorithm sharing and discussion platform. It's a web app I am building in Django.
 
+![Screenshot of Khwarizmi](khwarizmi-screenshot.png)
+
 The app is currently deployed using Heroku at [khwarizmiapp.herokuapp.com](https://khwarizmiapp.herokuapp.com). Since the app doesn't receive any traffic, it may take some time to load at first because the Heroku dyno is sleeping. From the Heroku [documentation](https://devcenter.heroku.com/articles/free-dyno-hours):
 > If an app has a free web dyno and that dyno receives no web traffic in a 30-minute period, it will sleep.
-
-![Screenshot of Khwarizmi](khwarizmi-screenshot.png)
 
 ## Current Features:
 - Standard user authentication and authorization system (signup, login, logout, password reset, etc.)
