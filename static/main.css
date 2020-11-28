@@ -1,5 +1,5 @@
 body {
-    background: #222831;
+    background: #1a1e24;
     
     color: #eeeeee;
     font-size: 1.1rem;
@@ -39,7 +39,7 @@ ul {
 }
 
 .content-section {
-    background: #222831;
+    background: #1a1e24;
     padding: 10px 20px;
     border-radius: 4px;
     /* margin-top: 20px; */
@@ -112,6 +112,10 @@ a.article-title:hover {
 .navbar-brand {
     font-family: Lateef;
     font-size: 2rem;
+}
+
+hr {
+    border-color: grey;
 }
 
 /* highlight.js */
